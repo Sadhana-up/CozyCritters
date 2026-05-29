@@ -2,10 +2,16 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.pool import NullPool
 
+import os
+
 # PostgreSQL database URL
 # Format: postgresql+psycopg://username:password@host:port/database
-# Default PostgreSQL port is 5432
-DATABASE_URL = "postgresql+psycopg://postgres:password@localhost:5432/cozycritters"
+# Default PostgreSQL port is 5432.
+# On macOS Homebrew, we fallback to a passwordless connection using the local OS user.
+DATABASE_URL = os.getenv(
+    "DATABASE_URL", 
+    "postgresql+psycopg://localhost:5432/cozycritters"
+)
 
 # Create the database engine
 engine = create_engine(

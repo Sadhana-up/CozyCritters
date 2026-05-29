@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from datetime import timedelta, datetime
 from typing import Optional
 from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import Session
@@ -29,6 +30,15 @@ app = FastAPI(
     description="A cute pet management API with PostgreSQL",
     version="0.1.0",
     lifespan=lifespan,
+)
+
+# Enable CORS for frontend requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

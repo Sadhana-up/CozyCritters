@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-cozy-cream: #FFFDF9;
+  --color-cozy-canvas: #FFF9F2;
+  --color-cozy-peach: #FFDFD3;
+  --color-cozy-pink: #FFB7B2;
+  --color-cozy-green: #C8E6C9;
+  --color-cozy-yellow: #FFDAC1;
+  --color-cozy-lavender: #E0BBE4;
+  --color-cozy-violet: #B57EDC;
+  --color-cozy-sky: #E3F2FD;
+  --color-cozy-night: #1A252F;
+  --color-cozy-dusk: #2C3E50;
+  --color-cozy-bark: #6D4C41;
+  --color-cozy-clay: #A1887F;
+  --color-cozy-brown: #D7CCC8;
+  --color-cozy-dark: #4A3E3D;
+
+  --font-cozy: "Quicksand", "Outfit", "ui-sans-serif", "system-ui", "sans-serif";
+  --font-serif: "Lora", "Georgia", "ui-serif", "serif";
+
+  --animate-bounce-slow: bounce 2.5s infinite;
+  --animate-float-slow: float 5s ease-in-out infinite;
+  --animate-float-medium: float 4s ease-in-out infinite;
+  --animate-float-fast: float 3s ease-in-out infinite;
+  --animate-pulse-soft: pulseSoft 3s ease-in-out infinite;
+
+  --shadow-cozy-sm: 0 4px 6px -1px rgba(74, 62, 61, 0.05), 0 2px 4px -1px rgba(74, 62, 61, 0.03);
+  --shadow-cozy: 0 10px 25px -5px rgba(74, 62, 61, 0.1), 0 8px 10px -6px rgba(74, 62, 61, 0.08);
+  --shadow-cozy-lg: 0 20px 35px -5px rgba(74, 62, 61, 0.12), 0 10px 10px -5px rgba(74, 62, 61, 0.08);
+  --shadow-bubble: 0 8px 0px 0px rgba(74, 62, 61, 0.15);
+  --shadow-bubble-active: 0 2px 0px 0px rgba(74, 62, 61, 0.15);
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1.5deg); }
+  }
+  @keyframes pulseSoft {
+    0%, 100% { opacity: 0.9; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.03); }
+  }
+}
+
+/* Global body styling */
+body {
+  @apply font-cozy bg-cozy-canvas text-cozy-dark antialiased overflow-x-hidden select-none selection:bg-cozy-peach;
+  background-image: 
+    radial-gradient(#ffdfd3 1px, transparent 1px), 
+    radial-gradient(#ffdfd3 1px, #fffdf9 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+/* Cute puffy bubbly button styled after Animal Crossing */
+.bubble-btn {
+  @apply relative px-5 py-3 font-bold text-cozy-dark bg-white border-[3px] border-cozy-dark rounded-2xl shadow-bubble hover:-translate-y-0.5 active:shadow-bubble-active active:translate-y-1 transition-all duration-100 flex items-center justify-center gap-2 select-none cursor-pointer outline-none;
+}
+
+.bubble-btn-pink {
+  @apply bg-cozy-pink hover:bg-[#FFA5A0] active:bg-[#F29F9A];
+}
+
+.bubble-btn-green {
+  @apply bg-cozy-green hover:bg-[#B7DBB8] active:bg-[#A9CEAA];
+}
+
+.bubble-btn-yellow {
+  @apply bg-cozy-yellow hover:bg-[#F3CFA8] active:bg-[#E5BF98];
+}
+
+.bubble-btn-peach {
+  @apply bg-cozy-peach hover:bg-[#E8C5B9] active:bg-[#D9B6AA];
+}
+
+.bubble-btn-lavender {
+  @apply bg-cozy-lavender hover:bg-[#D1ABCE] active:bg-[#C29CBF];
+}
+
+.bubble-btn-sky {
+  @apply bg-cozy-sky hover:bg-[#C5E1F5] active:bg-[#B8D7EB];
+}
+
+/* Cartoony game-like card */
+.cozy-card {
+  @apply bg-white border-[3px] border-cozy-dark rounded-[2.5rem] p-6 shadow-cozy hover:shadow-cozy-lg transition-all duration-300 relative overflow-hidden;
+}
+
+.cozy-border-thick {
+  @apply border-[4px] border-cozy-dark;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF9F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFDFD3;
+  border: 2px solid #FFF9F2;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFB7B2;
+}
+
+/* Background Gradients */
+.day-bg-overlay {
+  background-image: 
+    radial-gradient(#ffdfd3 1px, transparent 1px), 
+    radial-gradient(#ffdfd3 1px, #fffbf7 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+.night-bg-overlay {
+  background-image: 
+    radial-gradient(#2c3e50 1.2px, transparent 1.2px), 
+    radial-gradient(#2c3e50 1.2px, #1a252f 1.2px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+/* Watercolor brush strokes for organic Maisonette vibe */
+.watercolor-peach {
+  background: radial-gradient(circle at center, rgba(255, 223, 211, 0.75) 0%, rgba(255, 253, 249, 0) 70%);
+  filter: blur(16px);
+}
+
+.watercolor-pink {
+  background: radial-gradient(circle at center, rgba(255, 183, 178, 0.55) 0%, rgba(255, 253, 249, 0) 70%);
+  filter: blur(20px);
+}
+
+.watercolor-green {
+  background: radial-gradient(circle at center, rgba(200, 230, 201, 0.5) 0%, rgba(255, 253, 249, 0) 70%);
+  filter: blur(20px);
+}
+
+.watercolor-yellow {
+  background: radial-gradient(circle at center, rgba(255, 218, 193, 0.65) 0%, rgba(255, 253, 249, 0) 70%);
+  filter: blur(16px);
+}
+
