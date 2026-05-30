@@ -1,3 +1,8 @@
+# Environment variables (NEVER commit .env with secrets)
+.env
+.env.local
+.env.*.local
+
 # Python-generated files
 __pycache__/
 *.py[oc]
