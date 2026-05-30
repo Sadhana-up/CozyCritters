@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const FloatingHearts = ({ count = 15, nightMode = false }) => {
   const [particles, setParticles] = useState([]);
@@ -26,11 +26,11 @@ const FloatingHearts = ({ count = 15, nightMode = false }) => {
           className="absolute select-none rounded-full"
           style={{
             left: `${p.x}%`,
-            bottom: '-50px',
+            bottom: "-50px",
             opacity: p.opacity,
             width: `${p.size}px`,
             height: `${p.size}px`,
-            backgroundColor: nightMode 
+            backgroundColor: nightMode
               ? `rgba(200, 180, 220, ${p.opacity * 0.6})`
               : `rgba(255, 200, 200, ${p.opacity * 0.8})`,
             boxShadow: nightMode
@@ -39,7 +39,7 @@ const FloatingHearts = ({ count = 15, nightMode = false }) => {
           }}
           initial={{ y: 0, opacity: 0 }}
           animate={{
-            y: '-110vh',
+            y: "-110vh",
             x: p.drift,
             opacity: [0, p.opacity, p.opacity, 0],
             rotate: [0, 360],
@@ -48,10 +48,9 @@ const FloatingHearts = ({ count = 15, nightMode = false }) => {
             duration: p.duration,
             repeat: Infinity,
             delay: p.delay,
-            ease: 'linear',
+            ease: "linear",
           }}
         />
-        </motion.div>
       ))}
     </div>
   );

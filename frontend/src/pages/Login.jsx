@@ -5,6 +5,8 @@ import Button from "../components/UI/Button";
 import Card from "../components/UI/Card";
 import FloatingHearts from "../components/FloatingHearts";
 import AnimatedCritter from "../components/AnimatedCritter";
+import DreamyBackground from "../components/DreamyBackground";
+import Jelly3DButton from "../components/Jelly3DButton";
 import { authService } from "../services/api";
 
 const Login = () => {
@@ -40,21 +42,32 @@ const Login = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden day-bg-overlay px-4 py-8">
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#FFF0E6] via-[#FFFDF9] to-[#FFEAE5] px-4 py-8">
+      {/* Dreamy background */}
+      <DreamyBackground />
+
       {/* Floating Hearts background */}
-      <FloatingHearts count={10} />
+      <FloatingHearts count={12} />
 
       <div className="relative z-10 w-full max-w-md flex flex-col items-center">
         {/* Peek-a-boo Critter */}
-        <div className="mb-[-28px] z-20 flex flex-col items-center select-none">
-          <div className="bg-white border-[3px] border-cozy-dark rounded-xl px-4 py-1.5 shadow-sm text-xs font-bold text-cozy-dark mb-1 animate-bounce">
+        <motion.div
+          className="mb-[-28px] z-20 flex flex-col items-center select-none"
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <motion.div
+            className="bg-gradient-to-r from-cozy-pink to-cozy-purple border-[3px] border-cozy-dark rounded-xl px-4 py-1.5 shadow-sm text-xs font-bold text-white mb-1"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
             Welcome back!
-          </div>
+          </motion.div>
           <AnimatedCritter actionState="idle" className="w-28 h-28" />
-        </div>
+        </motion.div>
 
         {/* Card containing login form */}
-        <Card className="w-full border-[3px] pt-12 pb-6 px-6 md:px-8 bg-white flex flex-col gap-6">
+        <Card className="w-full border-[3px] pt-12 pb-6 px-6 md:px-8 bg-gradient-to-br from-white to-cozy-pink/5 flex flex-col gap-6 shadow-cozy-lg">
           <div className="text-center">
             <h2 className="text-2xl font-black text-cozy-dark">Sign In</h2>
             <p className="text-xs font-medium text-cozy-dark/50 mt-1">
@@ -77,12 +90,13 @@ const Login = () => {
               <label className="text-xs font-bold text-cozy-dark/70 ml-1">
                 USERNAME
               </label>
-              <input
+              <motion.input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="cozy_caretaker"
-                className="w-full px-4 py-3 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-[#FFFDF9] outline-none transition-colors placeholder:text-cozy-dark/20 text-sm"
+                whileFocus={{ scale: 1.02 }}
+                className="w-full px-4 py-3.5 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-gradient-to-br from-[#FFFDF9] to-cozy-pink/10 outline-none transition-all placeholder:text-cozy-dark/20 text-sm shadow-sm focus:shadow-cozy-sm"
               />
             </div>
 
@@ -90,23 +104,29 @@ const Login = () => {
               <label className="text-xs font-bold text-cozy-dark/70 ml-1">
                 PASSWORD
               </label>
-              <input
+              <motion.input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-[#FFFDF9] outline-none transition-colors placeholder:text-cozy-dark/20 text-sm"
+                whileFocus={{ scale: 1.02 }}
+                className="w-full px-4 py-3.5 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-gradient-to-br from-[#FFFDF9] to-cozy-pink/10 outline-none transition-all placeholder:text-cozy-dark/20 text-sm shadow-sm focus:shadow-cozy-sm"
               />
             </div>
 
-            <Button
-              type="submit"
-              variant="pink"
-              disabled={loading}
-              className="w-full py-3.5 text-base font-extrabold border-[3px] mt-2 shadow-cozy hover:shadow-cozy-lg"
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
             >
-              {loading ? "Entering your cozy world..." : "Enter"}
-            </Button>
+              <Button
+                type="submit"
+                variant="pink"
+                disabled={loading}
+                className="w-full py-4 text-base font-extrabold border-[3px] mt-2 shadow-cozy hover:shadow-cozy-lg transition-all bg-gradient-to-r from-cozy-pink to-rose-300"
+              >
+                {loading ? "Entering your cozy world..." : "Enter"}
+              </Button>
+            </motion.div>
           </form>
 
           <div className="border-t-[2.5px] border-cozy-dark/5 pt-4 text-center">

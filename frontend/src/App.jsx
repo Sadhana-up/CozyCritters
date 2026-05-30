@@ -1,11 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Landing from './pages/Landing';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import { authService } from './services/api';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import PetGameHub from "./pages/PetGameHub";
+import Profile from "./pages/Profile";
+import { authService } from "./services/api";
 
 // Simple route guard for auth-only pages
 const ProtectedRoute = ({ children }) => {
@@ -27,39 +32,39 @@ function App() {
         <Route path="/" element={<Landing />} />
 
         {/* Public Auth Pages with guards */}
-        <Route 
-          path="/login" 
+        <Route
+          path="/login"
           element={
             <PublicRoute>
               <Login />
             </PublicRoute>
-          } 
+          }
         />
-        <Route 
-          path="/signup" 
+        <Route
+          path="/signup"
           element={
             <PublicRoute>
               <Signup />
             </PublicRoute>
-          } 
+          }
         />
 
         {/* Protected Game Pages */}
-        <Route 
-          path="/dashboard" 
+        <Route
+          path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <PetGameHub />
             </ProtectedRoute>
-          } 
+          }
         />
-        <Route 
-          path="/profile" 
+        <Route
+          path="/profile"
           element={
             <ProtectedRoute>
               <Profile />
             </ProtectedRoute>
-          } 
+          }
         />
 
         {/* Catch-all Redirect */}

@@ -5,6 +5,8 @@ import Button from "../components/UI/Button";
 import Card from "../components/UI/Card";
 import FloatingHearts from "../components/FloatingHearts";
 import AnimatedCritter from "../components/AnimatedCritter";
+import DreamyBackground from "../components/DreamyBackground";
+import Jelly3DButton from "../components/Jelly3DButton";
 import { authService } from "../services/api";
 import { soundManager } from "../utils/sound";
 
@@ -55,21 +57,32 @@ const Signup = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden day-bg-overlay px-4 py-8">
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#FFF0E6] via-[#FFFDF9] to-[#FFEAE5] px-4 py-8">
+      {/* Dreamy background */}
+      <DreamyBackground />
+
       {/* Floating Hearts background */}
-      <FloatingHearts count={10} />
+      <FloatingHearts count={12} />
 
       <div className="relative z-10 w-full max-w-md flex flex-col items-center">
         {/* Peek-a-boo Critter */}
-        <div className="mb-[-28px] z-20 flex flex-col items-center select-none">
-          <div className="bg-white border-[3px] border-cozy-dark rounded-xl px-4 py-1.5 shadow-sm text-xs font-bold text-cozy-dark mb-1 animate-bounce">
+        <motion.div
+          className="mb-[-28px] z-20 flex flex-col items-center select-none"
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <motion.div
+            className="bg-gradient-to-r from-cozy-pink to-cozy-sky border-[3px] border-cozy-dark rounded-xl px-4 py-1.5 shadow-sm text-xs font-bold text-white mb-1"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
             Let's be friends!
-          </div>
+          </motion.div>
           <AnimatedCritter actionState="happy" className="w-28 h-28" />
-        </div>
+        </motion.div>
 
         {/* Card containing signup form */}
-        <Card className="w-full border-[3px] pt-12 pb-6 px-6 md:px-8 bg-white flex flex-col gap-6">
+        <Card className="w-full border-[3px] pt-12 pb-6 px-6 md:px-8 bg-gradient-to-br from-white to-cozy-yellow/5 flex flex-col gap-6 shadow-cozy-lg">
           <div className="text-center">
             <h2 className="text-2xl font-black text-cozy-dark">
               Adopt a Companion
@@ -89,17 +102,18 @@ const Signup = () => {
             </motion.div>
           )}
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-bold text-cozy-dark/70 ml-1">
                 EMAIL ADDRESS
               </label>
-              <input
+              <motion.input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="caretaker@gmail.com"
-                className="w-full px-4 py-3 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-[#FFFDF9] outline-none transition-colors placeholder:text-cozy-dark/20 text-sm"
+                whileFocus={{ scale: 1.02 }}
+                className="w-full px-4 py-3.5 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-gradient-to-br from-[#FFFDF9] to-cozy-yellow/10 outline-none transition-all placeholder:text-cozy-dark/20 text-sm shadow-sm focus:shadow-cozy-sm"
               />
             </div>
 
@@ -107,12 +121,13 @@ const Signup = () => {
               <label className="text-xs font-bold text-cozy-dark/70 ml-1">
                 CARETAKER USERNAME
               </label>
-              <input
+              <motion.input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="cozy_caretaker"
-                className="w-full px-4 py-3 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-[#FFFDF9] outline-none transition-colors placeholder:text-cozy-dark/20 text-sm"
+                whileFocus={{ scale: 1.02 }}
+                className="w-full px-4 py-3.5 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-gradient-to-br from-[#FFFDF9] to-cozy-yellow/10 outline-none transition-all placeholder:text-cozy-dark/20 text-sm shadow-sm focus:shadow-cozy-sm"
               />
               <span className="text-[10px] text-cozy-dark/40 font-bold ml-1">
                 Your companion's name is magically chosen based on your
@@ -124,23 +139,30 @@ const Signup = () => {
               <label className="text-xs font-bold text-cozy-dark/70 ml-1">
                 CREATE PASSWORD
               </label>
-              <input
+              <motion.input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-[#FFFDF9] outline-none transition-colors placeholder:text-cozy-dark/20 text-sm"
+                whileFocus={{ scale: 1.02 }}
+                className="w-full px-4 py-3.5 rounded-xl border-[2.5px] border-cozy-dark focus:border-cozy-pink font-semibold text-cozy-dark bg-gradient-to-br from-[#FFFDF9] to-cozy-yellow/10 outline-none transition-all placeholder:text-cozy-dark/20 text-sm shadow-sm focus:shadow-cozy-sm"
               />
             </div>
 
-            <Button
-              type="submit"
-              variant="sky"
-              disabled={loading}
-              className="w-full py-3.5 text-base font-extrabold border-[3px] mt-2 shadow-cozy hover:shadow-cozy-lg"
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+              className="w-full"
             >
-              {loading ? "Hatching your companion..." : "Adopt & Start"}
-            </Button>
+              <Jelly3DButton
+                type="submit"
+                variant="sky"
+                className="w-full"
+                disabled={loading}
+              >
+                {loading ? "Hatching your companion..." : "Adopt & Start"}
+              </Jelly3DButton>
+            </motion.div>
           </form>
 
           <div className="border-t-[2.5px] border-cozy-dark/5 pt-4 text-center">
