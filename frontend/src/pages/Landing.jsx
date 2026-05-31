@@ -44,19 +44,26 @@ const Landing = () => {
         {/* Minimalist menu */}
         <nav className="hidden md:flex items-center gap-8 text-xs font-black uppercase tracking-widest text-cozy-dark/50">
           <motion.a
+            href="#critters"
+            className="hover:text-cozy-dark transition-colors"
+            whileHover={{ scale: 1.1 }}
+          >
+            Our Critters
+          </motion.a>
+          <motion.a
             href="#rituals"
             className="hover:text-cozy-dark transition-colors"
             whileHover={{ scale: 1.1 }}
           >
-            Rituals
+            How It Works
           </motion.a>
-          <motion.a
-            href="#about"
-            className="hover:text-cozy-dark transition-colors"
-            whileHover={{ scale: 1.1 }}
+          <motion.button
+            onClick={() => navigate("/gallery")}
+            className="px-4 py-2 bg-cozy-pink/20 hover:bg-cozy-pink/30 rounded-full transition-colors"
+            whileHover={{ scale: 1.05 }}
           >
-            Magic
-          </motion.a>
+            Gallery
+          </motion.button>
         </nav>
 
         {/* Cloud Navigation - Auth buttons on mobile */}
@@ -91,26 +98,26 @@ const Landing = () => {
               animate={{ y: [0, -2, 0] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              <Sparkles size={14} /> Whimsical Virtual Pet Sanctuary
+              <Sparkles size={14} /> 9 Unique Personalities Await
             </motion.span>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-serif text-cozy-dark leading-[0.95] tracking-tight">
-              Adopt your
+              Meet Your
               <br />
               <span className="bg-gradient-to-r from-cozy-pink via-cozy-yellow to-cozy-sky bg-clip-text text-transparent">
-                adorable companion
+                New Fuzzy Friends
               </span>
             </h1>
 
             <p className="text-base md:text-lg font-semibold text-cozy-dark/70 leading-relaxed max-w-md">
-              Step into a dreamy, cozy sanctuary where magical creatures await.
-              Nurture, bond, and grow together in a warm embrace of digital
-              companionship.
+              Discover 9 adorable critters, each with their own unique
+              personality, quirks, and favorite activities. Build meaningful
+              bonds in a warm, cozy sanctuary.
             </p>
           </div>
 
           <motion.div
-            className="flex items-center justify-start"
+            className="flex items-center justify-start gap-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -123,6 +130,27 @@ const Landing = () => {
               <ShieldCheck size={16} className="text-cozy-green" />
               <span>Free forever. No ads.</span>
             </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.button
+              onClick={() => navigate("/gallery")}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 bg-cozy-pink/20 hover:bg-cozy-pink/30 text-cozy-dark font-bold rounded-full transition-all text-sm"
+            >
+              View Gallery
+            </motion.button>
+
+            {!isLoggedIn && (
+              <motion.button
+                onClick={() => navigate("/signup")}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-3 bg-gradient-to-r from-cozy-pink to-cozy-sky text-white font-bold rounded-full hover:shadow-lg transition-all text-sm"
+              >
+                Join Now
+              </motion.button>
+            )}
           </motion.div>
         </motion.div>
 
@@ -217,7 +245,7 @@ const Landing = () => {
         </motion.div>
       </main>
 
-      {/* ================= RITUALS SECTION ================= */}
+      {/* ================= HOW IT WORKS SECTION ================= */}
       <section
         id="rituals"
         className="relative z-10 max-w-7xl mx-auto w-full pt-16 pb-12 border-t-[2px] border-cozy-dark/10"
@@ -229,10 +257,10 @@ const Landing = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-black font-serif text-cozy-dark mb-3">
-            Mindful Care Rituals
+            How It Works
           </h2>
           <p className="text-sm font-semibold text-cozy-dark/50 uppercase tracking-widest">
-            Simple, gentle interactions for daily bonding
+            Simple, playful interactions to build your bond
           </p>
         </motion.div>
 

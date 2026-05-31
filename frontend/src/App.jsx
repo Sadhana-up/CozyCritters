@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PetGameHub from "./pages/PetGameHub";
 import Profile from "./pages/Profile";
+import CritterGallery from "./pages/CritterGallery";
 import { authService } from "./services/api";
 
 // Simple route guard for auth-only pages
@@ -30,6 +31,9 @@ function App() {
       <Routes>
         {/* Public Landing Page */}
         <Route path="/" element={<Landing />} />
+
+        {/* Public Gallery Page */}
+        <Route path="/gallery" element={<CritterGallery />} />
 
         {/* Public Auth Pages with guards */}
         <Route
